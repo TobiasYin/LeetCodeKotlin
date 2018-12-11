@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a3f5559-dd65-4353-8a56-276a2973f250" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="5a3f5559-dd65-4353-8a56-276a2973f250" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,13 +25,13 @@
         <counts>
           <entry key="IDEA_MODULE" value="1" />
           <entry key="JAVA" value="3" />
-          <entry key="Kotlin" value="37" />
+          <entry key="Kotlin" value="38" />
           <entry key="Python" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Kotlin" value="1783" />
+          <entry key="Kotlin" value="2487" />
           <entry key="Python" value="42" />
         </counts>
       </usages-collector>
@@ -86,11 +84,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/answer/leetcode/LeetCode136.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="276">
               <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/answer/leetcode/LeetCode155.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="403">
+              <caret line="71" column="45" selection-start-line="71" selection-start-column="45" selection-end-line="71" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -143,6 +150,7 @@
         <option value="$PROJECT_DIR$/src/answer/leetcode/LeetCode722.kt" />
         <option value="$PROJECT_DIR$/src/answer/leetcode/LeetCode53.kt" />
         <option value="$PROJECT_DIR$/src/answer/leetcode/LeetCode136.kt" />
+        <option value="$PROJECT_DIR$/src/answer/leetcode/LeetCode155.kt" />
       </list>
     </option>
   </component>
@@ -203,7 +211,7 @@
     <property name="SearchEverywhereHistoryKey" value="show kot&#9;ACTION&#9;ShowKotlinBytecode&#10;show kotlin&#9;ACTION&#9;ShowKotlinBytecode" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544520588029" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544522046220" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -226,7 +234,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Kotlin.answer.leetcode.LeetCode136Kt">
+  <component name="RunManager" selected="Kotlin.answer.leetcode.LeetCode155Kt">
     <configuration name="answer.leetcode.LeetCode136Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
       <module name="LeetCode" />
       <option name="VM_PARAMETERS" />
@@ -235,6 +243,19 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="MAIN_CLASS_NAME" value="answer.leetcode.LeetCode136Kt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="answer.leetcode.LeetCode155Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="LeetCode" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="answer.leetcode.LeetCode155Kt" />
       <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -266,19 +287,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="answer.leetcode.LeetCode42Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
-      <module name="LeetCode" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" value="answer.leetcode.LeetCode42Kt" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="answer.leetcode.LeetCode53Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
       <module name="LeetCode" />
       <option name="VM_PARAMETERS" />
@@ -293,19 +301,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Kotlin.answer.leetcode.LeetCode42Kt" />
       <item itemvalue="Kotlin.answer.leetcode.LeetCode27Kt" />
       <item itemvalue="Kotlin.answer.leetcode.LeetCode28Kt" />
       <item itemvalue="Kotlin.answer.leetcode.LeetCode53Kt" />
       <item itemvalue="Kotlin.answer.leetcode.LeetCode136Kt" />
+      <item itemvalue="Kotlin.answer.leetcode.LeetCode155Kt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.answer.leetcode.LeetCode155Kt" />
         <item itemvalue="Kotlin.answer.leetcode.LeetCode136Kt" />
         <item itemvalue="Kotlin.answer.leetcode.LeetCode53Kt" />
         <item itemvalue="Kotlin.answer.leetcode.LeetCode28Kt" />
         <item itemvalue="Kotlin.answer.leetcode.LeetCode27Kt" />
-        <item itemvalue="Kotlin.answer.leetcode.LeetCode42Kt" />
       </list>
     </recent_temporary>
   </component>
@@ -322,12 +330,12 @@
       <workItem from="1544444099705" duration="1953000" />
       <workItem from="1544458854451" duration="1893000" />
       <workItem from="1544515619453" duration="337000" />
-      <workItem from="1544515983795" duration="4591000" />
+      <workItem from="1544515983795" duration="6047000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8774000" />
+    <option name="totallyTimeSpent" value="10230000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -603,6 +611,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/answer/leetcode/LeetCode155.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="71" column="45" selection-start-line="71" selection-start-column="45" selection-end-line="71" selection-end-column="45" />
         </state>
       </provider>
     </entry>
