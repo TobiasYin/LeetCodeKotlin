@@ -20,7 +20,7 @@ class Solution145 {
         return result
     }
 
-    fun add(node: TreeNode) {
+    tailrec fun add(node: TreeNode) {
         stack.push(node)
         if (node.right != null) add(node.right!!)
         if (node.left != null) add(node.left!!)
