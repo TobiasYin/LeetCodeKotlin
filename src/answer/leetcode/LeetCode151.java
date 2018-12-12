@@ -30,6 +30,8 @@ public class LeetCode151 {
         return stringBuilder.toString();
     }
 
+    //题目说可以用O(1)的空间复杂度完成,但是会略微增加时间复杂度,所以没有实现.
+
     public static void main(String[] args) {
         String s = " the sky is blue  a";
         LeetCode151 leetCode151 = new LeetCode151();
