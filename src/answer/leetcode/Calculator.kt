@@ -80,10 +80,6 @@ class Calculator {
                 return array0[0] as Node
             else
                 throw IllegalArgumentException("Illegal Operate")
-        } else if (array0.size == 2) {
-            if (array0[1] is Node) {
-                return Value((array0[0].toString() + ((array0[1] as Node).eval() as Value).value.toString()).toDouble())
-            }
         }
         val stack = Stack<Int>()
         val nodeStack = Stack<Node>()
@@ -361,25 +357,8 @@ class Calculator {
 
 fun main(args: Array<String>) {
     val calculator = Calculator()
-//    val s1 = Solution224.Sum(Solution224.Value(3), Solution224.Value(4))//7
-//    val s2 = Solution224.Sum(Solution224.Value(6), Solution224.Value(5))//11
-//    val s3 = Solution224.Sum(s1, Solution224.Value(5))//12
-//    val s4 = Solution224.Sum(s3, s2)//23
-//    val m1 = Solution224.Minus(s1, s4)//-16
-//    val m2 = Solution224.Minus(m1, Solution224.Value(5))//-21
-//    val m3 = Solution224.Minus(m2, s1)//-28
-//    println(m3.eval())
-//    val stack = Solution224.Stack<Int>()
-//    for (i in 1..100) {
-//        stack.push(i)
-//    }
-//    println("stack : ${stack.array.joinToString(" ")}")
-//
-//    for (i in 1..100) {
-//        println(stack.pop())
-//    }
-//    println('0'.toInt() - 48)
     println(calculator.calculate("-1.2+5.1+7.1*(3+5.4)^2.1+(-3*5)"))
-    println(timeTest(10000) { calculator.calculate("-1.2+5.1+7.1*(3+5.4)^2.1+(-3*5)") })
-//    println(listOf(1, 2, 3, 4, 5, 6).subList(2, 5))
+    println(timeTest(10000) { calculator.calculate("-1.2+5.1+7.1*(3+5.4)^2.1+(-3*5)") })//实现约0.0183s
 }
+
+// 基于224题实现了一个计算器,支持有理数的+,-,*,/,^运算,支持'(',')',优先级和算数运算相同
