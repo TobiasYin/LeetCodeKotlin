@@ -79,11 +79,11 @@ class Solution224 {
                     '*' -> {
                         val nextItem = array[index + 1]
                         if (nextItem !is Node) {
-                            throw IllegalArgumentException("运算符错误")
+                            throw IllegalArgumentException("Illegal Operate")
                         }
                         val lastItem = array[index - 1]
                         if (lastItem !is Node) {
-                            throw IllegalArgumentException("运算符错误")
+                            throw IllegalArgumentException("Illegal Operate")
                         }
                         val node = Time(lastItem, nextItem).eval()
                         for (i in 1..3) array.removeAt(index - 1)
@@ -92,11 +92,11 @@ class Solution224 {
                     '/' -> {
                         val nextItem = array[index + 1]
                         if (nextItem !is Node) {
-                            throw IllegalArgumentException("运算符错误")
+                            throw IllegalArgumentException("Illegal Operate")
                         }
                         val lastItem = array[index - 1]
                         if (lastItem !is Node) {
-                            throw IllegalArgumentException("运算符错误")
+                            throw IllegalArgumentException("Illegal Operate")
                         }
                         val node = Div(lastItem, nextItem).eval()
                         for (i in 1..3) array.removeAt(index - 1)
