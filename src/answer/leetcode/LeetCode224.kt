@@ -1,6 +1,7 @@
 package answer.leetcode
 
 import java.lang.IndexOutOfBoundsException
+import java.lang.Math.pow
 import kotlin.IllegalArgumentException
 
 class Solution224 {
@@ -36,8 +37,8 @@ class Solution224 {
     }
 
     private fun parseList(array0: List<Any>): Node {
-        if (array0.size == 1){
-            if(array0[0] is Node)
+        if (array0.size == 1) {
+            if (array0[0] is Node)
                 return array0[0] as Node
             else
                 throw IllegalArgumentException("Illegal Operate")
@@ -54,7 +55,7 @@ class Solution224 {
                 ')' -> {
                     val index0 = try {
                         stack.pop()
-                    }catch (e:IndexOutOfBoundsException){
+                    } catch (e: IndexOutOfBoundsException) {
                         throw IllegalArgumentException("Illegal )")
                     }
 
@@ -71,8 +72,27 @@ class Solution224 {
         if (!stack.empty) {
             throw IllegalArgumentException("Illegal (")
         }
+
         index = 0
         try {
+            while (index < array.size) {
+                val item = array[index]
+                if (item == '^') {
+                    val nextItem = array[index + 1]
+                    if (nextItem !is Node) {
+                        throw IllegalArgumentException("Illegal Operate")
+                    }
+                    val lastItem = array[index - 1]
+                    if (lastItem !is Node) {
+                        throw IllegalArgumentException("Illegal Operate")
+                    }
+                    val node = Pow(lastItem, nextItem).eval()
+                    for (i in 1..3) array.removeAt(index - 1)
+                    array.add(--index, node)
+                }
+                index++
+            }
+            index = 0
             while (index < array.size) {
                 val item = array[index]
                 when (item) {
@@ -131,12 +151,18 @@ class Solution224 {
                 }
                 index++
             }
-        }catch (e:IndexOutOfBoundsException){
+        } catch (e: IndexOutOfBoundsException) {
             throw IllegalArgumentException("Illegal Operator")
         }
 
 
         return nodeStack.pop().eval()
+    }
+
+    class Pow(override val valueX: Node, override val valueY: Node) : Node, Operator {
+        override fun eval(): Node {
+            return eval{valueX, valueY -> Value(pow((valueX.eval() as Value).value.toDouble(),(valueY.eval() as Value).value.toDouble()).toInt()) }
+        }
     }
 
     class Time(override val valueX: Node, override val valueY: Node) : Node, Operator {
@@ -206,7 +232,7 @@ class Solution224 {
 
         override operator fun div(other: Node): Node {
             val temp = (other.eval() as Value).value
-            if (temp == 0){
+            if (temp == 0) {
                 throw IllegalArgumentException(" Zero can't be Divided")
             }
             if (other is Value) return Value(value / temp)
@@ -306,7 +332,7 @@ fun main(args: Array<String>) {
 //        println(stack.pop())
 //    }
 //    println('0'.toInt() - 48)
-    println(solution224.calculate("(2+2)*2/(3)+3"))
+    println(solution224.calculate("2*2^3"))
     println(timeTest(10000) { solution224.calculate("1*2") })
 //    println(listOf(1, 2, 3, 4, 5, 6).subList(2, 5))
 }
