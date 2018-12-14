@@ -1,10 +1,9 @@
 package answer.leetcode
 
 import java.lang.IndexOutOfBoundsException
-import java.lang.Math.pow
 import kotlin.IllegalArgumentException
 
-class Solution224 {
+class Solution227 {
     fun calculate(s: String): Int {
         val result = parseList(parseToList(s))
         return (result.eval() as Value).value
@@ -77,24 +76,6 @@ class Solution224 {
         try {
             while (index < array.size) {
                 val item = array[index]
-                if (item == '^') {
-                    val nextItem = array[index + 1]
-                    if (nextItem !is Node) {
-                        throw IllegalArgumentException("Illegal Operate")
-                    }
-                    val lastItem = array[index - 1]
-                    if (lastItem !is Node) {
-                        throw IllegalArgumentException("Illegal Operate")
-                    }
-                    val node = Pow(lastItem, nextItem).eval()
-                    for (i in 1..3) array.removeAt(index - 1)
-                    array.add(--index, node)
-                }
-                index++
-            }
-            index = 0
-            while (index < array.size) {
-                val item = array[index]
                 when (item) {
                     '*' -> {
                         val nextItem = array[index + 1]
@@ -157,12 +138,6 @@ class Solution224 {
 
 
         return nodeStack.pop().eval()
-    }
-
-    class Pow(override val valueX: Node, override val valueY: Node) : Node, Operator {
-        override fun eval(): Node {
-            return eval{valueX, valueY -> Value(pow((valueX.eval() as Value).value.toDouble(),(valueY.eval() as Value).value.toDouble()).toInt()) }
-        }
     }
 
     class Time(override val valueX: Node, override val valueY: Node) : Node, Operator {
@@ -311,31 +286,5 @@ class Solution224 {
         }
     }
 }
-
-fun main(args: Array<String>) {
-    val solution224 = Solution224()
-//    val s1 = Solution224.Sum(Solution224.Value(3), Solution224.Value(4))//7
-//    val s2 = Solution224.Sum(Solution224.Value(6), Solution224.Value(5))//11
-//    val s3 = Solution224.Sum(s1, Solution224.Value(5))//12
-//    val s4 = Solution224.Sum(s3, s2)//23
-//    val m1 = Solution224.Minus(s1, s4)//-16
-//    val m2 = Solution224.Minus(m1, Solution224.Value(5))//-21
-//    val m3 = Solution224.Minus(m2, s1)//-28
-//    println(m3.eval())
-//    val stack = Solution224.Stack<Int>()
-//    for (i in 1..100) {
-//        stack.push(i)
-//    }
-//    println("stack : ${stack.array.joinToString(" ")}")
-//
-//    for (i in 1..100) {
-//        println(stack.pop())
-//    }
-//    println('0'.toInt() - 48)
-    println(solution224.calculate("2*2^3"))
-    println(timeTest(10000) { solution224.calculate("1*2") })
-//    println(listOf(1, 2, 3, 4, 5, 6).subList(2, 5))
-}
-// 为什么写这么多呢? 这道题只用建构一个+,-运算符, 但是这样这样写可以构建一个计算器框架,只要想,可以往里面添加任何运算符,包括乘除,次方之类的.当然, 这个框架还差一个很重要的部分, 优先级, 等下次想真正做个完整计算器时,在在这基础上添加吧.
-
-// 更新,顺便实现了 * /
+// 其实就是没有加乘方的224......
+// 其实这道题不需要括号匹配......

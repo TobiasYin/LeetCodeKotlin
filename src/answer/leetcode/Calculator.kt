@@ -1,22 +1,40 @@
 package answer.leetcode
 
+import java.lang.Exception
 import java.lang.IndexOutOfBoundsException
-import java.lang.Math.pow
+import java.lang.StringBuilder
 import kotlin.IllegalArgumentException
 
-class Solution224 {
-    fun calculate(s: String): Int {
-        val result = parseList(parseToList(s))
-        return (result.eval() as Value).value
+class Calculator {
+    fun calculate(s: String): Double {
+        try {
+            val result = parseList(parseToList(s))
+            return (result.eval() as Value).value
+        }catch (e:Exception){
+            throw IllegalArgumentException("Unexpected Expression")
+        }
     }
 
     private fun parseToList(s1: String): List<Any> {
         val s = s1.filter { it != ' ' }
         val array = arrayListOf<Any>()
-        for ((index, item) in s.withIndex()) {
+        var index = 0
+        label@ while (index < s.length) {
+            if (index == 0 && (s[index] == '+' || s[index] == '-')) {
+                val num = StringBuilder(s[index].toString())
+                var i = s[++index]
+                while (i in '0'..'9' || i == '.') {
+                    num.append(i)
+                    if (index + 1 < s.length) {
+                        i = s[++index]
+                    }
+                }
+                array.add(num.toString().toDouble())
+            }
+            val item = s[index]
             if (index == 0) {
                 if (item in '0'..'9') {
-                    array.add(item.toInt() - 48)
+                    array.add((item.toInt() - 48))
                 } else {
                     array.add(item)
                 }
@@ -24,13 +42,33 @@ class Solution224 {
                 array[array.lastIndex] = (array.last().toString() + item.toString()).toInt()
             } else if (item in '0'..'9') {
                 array.add(item.toInt() - 48)
+            } else if (item == '.') {
+                val num = StringBuilder(array[array.lastIndex].toString())
+                num.append('.')
+                var i = s[++index]
+                var flag = false
+                while (i in '0'..'9') {
+                    num.append(i)
+                    if (index + 1 < s.length)
+                        i = s[++index]
+                    else {
+                        flag = true
+                        break
+                    }
+                }
+                array[array.lastIndex] = num.toString().toDouble()
+                if (flag) {
+                    break@label
+                }
+                index--
             } else {
                 array.add(item)
             }
+            index++
         }
-        for ((index, item) in array.withIndex()) {
-            if (item is Int) {
-                array[index] = Value(item)
+        for ((index0, item) in array.withIndex()) {
+            if (item is Number) {
+                array[index0] = Value(item.toDouble())
             }
         }
         return array
@@ -47,6 +85,11 @@ class Solution224 {
         val nodeStack = Stack<Node>()
         val array = mutableListOf<Any>()
         array.addAll(array0)
+        if (array[0] == '+') {
+            array.removeAt(0)
+        } else if (array[0] == '-') {
+            array.add(0, Value(0.0))
+        }
         var index = 0
         while (index < array.size) {
             val item = array[index]
@@ -161,7 +204,7 @@ class Solution224 {
 
     class Pow(override val valueX: Node, override val valueY: Node) : Node, Operator {
         override fun eval(): Node {
-            return eval{valueX, valueY -> Value(pow((valueX.eval() as Value).value.toDouble(),(valueY.eval() as Value).value.toDouble()).toInt()) }
+            return eval { valueX, valueY -> Value(Math.pow((valueX.eval() as Value).value, (valueY.eval() as Value).value)) }
         }
     }
 
@@ -207,7 +250,7 @@ class Solution224 {
         }
     }
 
-    class Value(val value: Int) : Node {
+    class Value(val value: Double) : Node {
         override fun eval(): Node {
             return this
         }
@@ -232,7 +275,7 @@ class Solution224 {
 
         override operator fun div(other: Node): Node {
             val temp = (other.eval() as Value).value
-            if (temp == 0) {
+            if (temp == 0.0) {
                 throw IllegalArgumentException(" Zero can't be Divided")
             }
             if (other is Value) return Value(value / temp)
@@ -313,29 +356,9 @@ class Solution224 {
 }
 
 fun main(args: Array<String>) {
-    val solution224 = Solution224()
-//    val s1 = Solution224.Sum(Solution224.Value(3), Solution224.Value(4))//7
-//    val s2 = Solution224.Sum(Solution224.Value(6), Solution224.Value(5))//11
-//    val s3 = Solution224.Sum(s1, Solution224.Value(5))//12
-//    val s4 = Solution224.Sum(s3, s2)//23
-//    val m1 = Solution224.Minus(s1, s4)//-16
-//    val m2 = Solution224.Minus(m1, Solution224.Value(5))//-21
-//    val m3 = Solution224.Minus(m2, s1)//-28
-//    println(m3.eval())
-//    val stack = Solution224.Stack<Int>()
-//    for (i in 1..100) {
-//        stack.push(i)
-//    }
-//    println("stack : ${stack.array.joinToString(" ")}")
-//
-//    for (i in 1..100) {
-//        println(stack.pop())
-//    }
-//    println('0'.toInt() - 48)
-    println(solution224.calculate("2*2^3"))
-    println(timeTest(10000) { solution224.calculate("1*2") })
-//    println(listOf(1, 2, 3, 4, 5, 6).subList(2, 5))
+    val calculator = Calculator()
+    println(calculator.calculate("-1.2+5.1+7.1*(3+5.4)^2.1+(-3*5)"))
+    println(timeTest(10000) { calculator.calculate("-1.2+5.1+7.1*(3+5.4)^2.1+(-3*5)") })//实现约0.0183s
 }
-// 为什么写这么多呢? 这道题只用建构一个+,-运算符, 但是这样这样写可以构建一个计算器框架,只要想,可以往里面添加任何运算符,包括乘除,次方之类的.当然, 这个框架还差一个很重要的部分, 优先级, 等下次想真正做个完整计算器时,在在这基础上添加吧.
 
-// 更新,顺便实现了 * /
+// 基于224题实现了一个计算器,支持有理数的+,-,*,/,^运算,支持'(',')',优先级和算数运算相同
