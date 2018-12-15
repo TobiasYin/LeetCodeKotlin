@@ -1,22 +1,22 @@
-package answer.leetcode
-
-import java.lang.Exception
-import java.lang.IndexOutOfBoundsException
-import java.lang.StringBuilder
+import kotlin.Exception
+import kotlin.IndexOutOfBoundsException
 import kotlin.IllegalArgumentException
+import kotlin.math.pow
 
 class Calculator {
     fun calculate(s: String): Double {
         try {
             val result = parseList(parseToList(s))
             return (result.eval() as Value).value
-        }catch (e:Exception){
+        } catch (e: Exception) {
             throw IllegalArgumentException("Unexpected Expression")
         }
     }
 
     private fun parseToList(s1: String): List<Any> {
         val s = s1.filter { it != ' ' }
+        val set = setOf('0','1','2','3','4','5','6','7','8','9','.','*','-','+','/','^','(',')')
+        s.forEach{if(it !in set) throw IllegalArgumentException("Unexpected Expression")}
         val array = arrayListOf<Any>()
         var index = 0
         label@ while (index < s.length) {
@@ -34,14 +34,14 @@ class Calculator {
             val item = s[index]
             if (index == 0) {
                 if (item in '0'..'9') {
-                    array.add((item.toInt() - 48))
+                    array.add((item.toLong() - 48))
                 } else {
                     array.add(item)
                 }
-            } else if (array.last() is Int && item in '0'..'9') {
-                array[array.lastIndex] = (array.last().toString() + item.toString()).toInt()
+            } else if (array.last() is Long && item in '0'..'9') {
+                array[array.lastIndex] = (array.last().toString() + item.toString()).toLong()
             } else if (item in '0'..'9') {
-                array.add(item.toInt() - 48)
+                array.add(item.toLong() - 48)
             } else if (item == '.') {
                 val num = StringBuilder(array[array.lastIndex].toString())
                 num.append('.')
@@ -204,7 +204,7 @@ class Calculator {
 
     class Pow(override val valueX: Node, override val valueY: Node) : Node, Operator {
         override fun eval(): Node {
-            return eval { valueX, valueY -> Value(Math.pow((valueX.eval() as Value).value, (valueY.eval() as Value).value)) }
+            return eval { valueX, valueY -> Value((valueX.eval() as Value).value.pow((valueY.eval() as Value).value)) }
         }
     }
 
@@ -357,8 +357,20 @@ class Calculator {
 
 fun main(args: Array<String>) {
     val calculator = Calculator()
-    println(calculator.calculate("-1.2+5.1+7.1*(3+5.4)^2.1+(-3*5)"))
-    println(timeTest(10000) { calculator.calculate("-1.2+5.1+7.1*(3+5.4)^2.1+(-3*5)") })//实现约0.0183s
+    while (true) {
+        println("Please input the expression you need to calculate.(q to quit)")
+        val expression = readLine() ?: ""
+        if (expression == "q") {
+            break
+        }
+        try {
+            println("= "+calculator.calculate(expression))
+        } catch (e: IllegalArgumentException) {
+            println("Your input a wrong expression")
+        }
+        println()
+        println()
+    }
 }
 
 // 基于224题实现了一个计算器,支持有理数的+,-,*,/,^运算,支持'(',')',优先级和算数运算相同
