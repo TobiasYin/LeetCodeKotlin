@@ -1,9 +1,5 @@
 package answer.leetcode
 
-class ListNode(var `val`: Int = 0) {
-    var next: ListNode? = null
-}
-
 class Solution21 {
     fun mergeTwoLists(l1: ListNode?, l2: ListNode?): ListNode? {
         if(l1 == null && l2==null){

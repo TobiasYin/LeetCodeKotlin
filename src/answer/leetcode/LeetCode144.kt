@@ -7,10 +7,7 @@ package answer.leetcode
  *     var right: TreeNode? = null
  * }
  */
-class TreeNode(var `val`: Int = 0) {
-    var left: TreeNode? = null
-    var right: TreeNode? = null
-}
+
 
 class Solution144 {
     fun preorderTraversal(root: TreeNode?): List<Int> {

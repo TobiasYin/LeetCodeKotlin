@@ -33,31 +33,3 @@ class Solution20 {
         return false
     }
 }
-
-class Stack<E>{
-    private var data = arrayOfNulls<Any>(10) as Array<E>
-    private var size = 0
-    val empty: Boolean
-        get() = size == 0
-
-    private fun resize(length: Int) {
-        val newData = arrayOfNulls<Any>(length) as Array<E>
-        for (i in 0 until size) {
-            newData[i] = data[i]
-        }
-        data = newData
-    }
-
-    fun push(element: E) {
-        if (size == data.size) resize(size * 2)
-        data[size++] = element
-    }
-
-    fun pop(): E {
-        val temp = data[--size]
-        if (size < data.size / 4 && data.size / 2 != 0) resize(data.size / 2)
-        return temp
-    }
-
-    fun peek(): E = data[size - 1]
-}
