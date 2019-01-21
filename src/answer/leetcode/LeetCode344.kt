@@ -8,6 +8,6 @@ class Solution344 {
         }
         return res.toString()
     }
-//最简写法
+// 最简写法, 效率略低
 //    fun reverseString(s:String) = s.reversed()
 }
