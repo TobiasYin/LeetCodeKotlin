@@ -38,13 +38,12 @@ class WordDictionary() {
     }
 
     private fun searchAll(node: Node, word: String): Boolean {
-        var result = false
         for (i in node.next) {
             if (i != null) {
-                result = result || search(i, word)
+                if (search(i, word)) return true
             }
         }
-        return result
+        return false
     }
 }
 
